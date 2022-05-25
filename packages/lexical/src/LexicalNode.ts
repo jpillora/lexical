@@ -139,6 +139,7 @@ export type DOMConversionFn = (
 
 export type DOMChildConversion = (
   lexicalNode: LexicalNode,
+  parentLexicalNode: LexicalNode | null,
 ) => LexicalNode | null | void;
 
 export type DOMConversionMap = Record<
@@ -641,7 +642,7 @@ export class LexicalNode {
     removeNode(this, true, preserveEmptyParent);
   }
 
-  replace(replaceWith: LexicalNode): LexicalNode {
+  replace<N extends LexicalNode>(replaceWith: N): N {
     errorOnReadOnly();
     const toReplaceKey = this.__key;
     const writableReplaceWith = replaceWith.getWritable();

@@ -30,6 +30,7 @@ import {
   $setCompositionKey,
   $setSelection,
   COMMAND_PRIORITY_EDITOR,
+  createCommand,
   ElementNode,
   LexicalEditor,
   NodeKey,
@@ -423,7 +424,7 @@ describe('LexicalEditor tests', () => {
     const italicsListener = editor.registerNodeTransform(
       ParagraphNode,
       (paragraph) => {
-        const child = paragraph.getLastDescendant<TextNode>();
+        const child = paragraph.getLastDescendant();
 
         if (
           child !== null &&
@@ -905,10 +906,10 @@ describe('LexicalEditor tests', () => {
       const [decorators, setDecorators] = useState(() =>
         editor.getDecorators<ReactNode>(),
       );
-      // Subscribe to changes
 
+      // Subscribe to changes
       useEffect(() => {
-        return editor.registerDecoratorListener((nextDecorators) => {
+        return editor.registerDecoratorListener<ReactNode>((nextDecorators) => {
           setDecorators(nextDecorators);
         });
       }, []);
@@ -1672,7 +1673,7 @@ describe('LexicalEditor tests', () => {
     init();
 
     const commandListener = jest.fn();
-    const command = 'insertTestDecoratorNode';
+    const command = createCommand();
     const payload = 'testPayload';
     const removeCommandListener = editor.registerCommand(
       command,
@@ -1701,7 +1702,7 @@ describe('LexicalEditor tests', () => {
 
     const commandListener = jest.fn();
     const commandListenerTwo = jest.fn();
-    const command = 'insertTestDecoratorNode';
+    const command = createCommand();
     const removeCommandListener = editor.registerCommand(
       command,
       commandListener,

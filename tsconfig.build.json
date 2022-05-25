@@ -1,4 +1,8 @@
 {
+  // "compilerOptions": {
+  //   "noEmit": false,
+  //   "emitDeclarationOnly": true
+  // },
   "include": ["packages/**/*"],
   "exclude": [
     "node_modules/**/*",

@@ -7,7 +7,7 @@
  */
 
 import {$generateHtmlFromNodes, $generateNodesFromDOM} from '@lexical/html';
-import {$createLinkNode, LinkNode} from '@lexical/link';
+import {$createLinkNode, $isLinkNode, LinkNode} from '@lexical/link';
 import {
   $createListItemNode,
   $createListNode,
@@ -220,14 +220,19 @@ describe('Clipboard tests', () => {
       await editor.update(() => {
         const {paragraph} = fillEditorWithComplexData();
 
-        const [textNode1, linkNode] =
-          paragraph.getChildren<[TextNode, LinkNode]>();
+        const [textNode1, linkNode] = paragraph.getChildren<
+          TextNode | LinkNode
+        >();
 
         setAnchorPoint({
           key: textNode1.getKey(),
           offset: 0,
           type: 'text',
         });
+
+        if (!$isLinkNode(linkNode)) {
+          return;
+        }
 
         const linkTextNode = linkNode.getFirstChild<TextNode>();
 
@@ -274,7 +279,7 @@ describe('Clipboard tests', () => {
 
       await editor.update(() => {
         const {list} = fillEditorWithComplexData();
-        const [listItem1] = list.getChildren<[ListItemNode]>();
+        const [listItem1] = list.getChildren<ListItemNode>();
         const listItem1TextNode = listItem1.getFirstChild<TextNode>();
 
         setAnchorPoint({
@@ -333,8 +338,7 @@ describe('Clipboard tests', () => {
       await editor.update(() => {
         const {list} = fillEditorWithComplexData();
 
-        const [listItem1, listItem2] =
-          list.getChildren<[ListItemNode, ListItemNode]>();
+        const [listItem1, listItem2] = list.getChildren<ListItemNode>();
         const listItem1TextNode = listItem1.getFirstDescendant<TextNode>();
 
         setAnchorPoint({
