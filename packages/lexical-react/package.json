@@ -33,6 +33,7 @@
     "react": ">=17.x",
     "react-dom": ">=17.x"
   },
+  "types": "src/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/facebook/lexical",

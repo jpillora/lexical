@@ -16,6 +16,7 @@
   "dependencies": {
     "@lexical/utils": "0.2.9"
   },
+  "types": "src/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/facebook/lexical",

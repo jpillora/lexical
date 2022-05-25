@@ -11,7 +11,7 @@
   "license": "MIT",
   "version": "0.2.9",
   "main": "Lexical.js",
-  "typings": "Lexical.d.ts",
+  "types": "src/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/facebook/lexical",

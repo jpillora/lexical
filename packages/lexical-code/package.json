@@ -17,6 +17,7 @@
     "@lexical/utils": "0.2.9",
     "prismjs": "^1.27.0"
   },
+  "types": "src/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/facebook/lexical",

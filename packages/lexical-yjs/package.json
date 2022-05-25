@@ -20,6 +20,7 @@
     "lexical": "0.2.9",
     "yjs": ">=13.5.22"
   },
+  "types": "src/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/facebook/lexical",
