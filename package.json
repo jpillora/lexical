@@ -17,6 +17,7 @@
     "start:website": "npm run start --prefix packages/lexical-website-new -- --port 3001",
     "dev": "npm run dev --prefix packages/lexical-playground",
     "build": "node scripts/build.js",
+    "build-types": "tsc -p ./tsconfig.build.json",
     "build-prod": "npm run clean && npm run build -- --prod",
     "build-release": "npm run build-prod -- --release",
     "build-www": "npm run clean && npm run build -- --www && npm run build -- --www --prod && npm run prepare-www",
